@@ -1,3 +1,3 @@
 import React from "react";
 
-export const NameRaw = ({ name }) => <div>Hello {name}</div>;
+export const NameRaw = ({ name }) => <div>Hello {name} 🔥</div>;

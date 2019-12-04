@@ -1,9 +1,7 @@
 import React from "react";
 import "./App.css";
-import { NameRaw } from "./NameRaw";
+import { Counter } from "./container/Counter";
 
-const name = "Mars";
-
-const App = () => <NameRaw name={name} />;
+const App = () => <Counter />;
 
 export default App;
