@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import HelloComponent from "./HelloComponent";
+import { NameRaw } from "./NameRaw";
 
 const name = "Mars";
 
-const App = () => <HelloComponent name={name} />;
+const App = () => <NameRaw name={name} />;
 
 export default App;
