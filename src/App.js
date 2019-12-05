@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import { Counter } from "./container/Counter";
+import { BookList } from "./container/BookList";
 
-const App = () => <Counter initialValue={0} />;
+const App = () => <BookList />;
 
 export default App;
