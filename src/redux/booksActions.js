@@ -1,5 +1,4 @@
 // action creator
-export const addBook = () => {
-  console.log("testbutton clicked");
+export const addDummyBook = () => {
   return { type: "ADD_DUMMY" };
 };

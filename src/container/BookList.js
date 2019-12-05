@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { BookItem } from "../components/BookItem";
 import { AddButton } from "../components/AddButton";
+import { addDummyBook } from "../redux/booksActions";
 
 export const BookList = ({ books, addBook }) => {
   /*   useEffect(() => {
@@ -25,11 +26,6 @@ export const BookList = ({ books, addBook }) => {
       })}
     </>
   );
-};
-
-// action creator
-const addDummyBook = () => {
-  return { type: "ADD_DUMMY" };
 };
 
 // define state & dispatch method for connect
