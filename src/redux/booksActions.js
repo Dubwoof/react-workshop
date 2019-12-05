@@ -1,6 +1,5 @@
-let nextBookId = 0;
-export const addBook = book => ({
-  type: "ADD_BOOK",
-  id: nextBookId++,
-  book
-});
+// action creator
+export const addBook = () => {
+  console.log("testbutton clicked");
+  return { type: "ADD_DUMMY" };
+};

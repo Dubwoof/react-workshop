@@ -4,5 +4,13 @@ const INITIAL_STATE = {
 };
 
 export const booksReducer = (state = INITIAL_STATE, action) => {
-  return state;
+  console.log(action);
+  switch (action.type) {
+    case "ADD_DUMMY":
+      return {
+        books: state.books.concat({ title: "DUMMY BOOK" })
+      };
+    default:
+      return state;
+  }
 };
