@@ -18,7 +18,7 @@ export const BookList = ({ books, addBook, fetchBooks, pending }) => {
       <AddButton func={addBook} />
       {pending && <MyBulletListLoader />}
       {books.map((item, index) => {
-        return <BookItem key={index} item={item} />;
+        return <BookItem key={index} item={item} index={index} />;
       })}
     </>
   );

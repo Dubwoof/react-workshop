@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import BookList from "./container/BookList";
-import { BookDetails } from "./container/BookDetails";
+import BookDetails from "./container/BookDetails";
 import { Route, Link, Switch } from "react-router-dom";
 
 // const onClickHandler = () => {};

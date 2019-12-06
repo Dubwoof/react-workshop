@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { fetchBook } from "../redux/booksActions";
 
-export const BookDetails = ({ book, match }) => {
+export const BookDetails = ({ book, match, fetchBookByIsbn }) => {
+  useEffect(() => {
+    fetchBookByIsbn(match.params.isbn);
+  }, [fetchBookByIsbn, match.params.isbn]);
+
   return (
     <>
-      {book ? <div></div> : <div>books is undefined</div>}
+      {book ? <div>{book.title}</div> : <div>book is undefined</div>}
       <div>{match.params.isbn}</div>
     </>
   );
@@ -17,7 +22,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    fetchBookByIsbn: isbn => {
+      console.log("isbn", isbn);
+      return dispatch(fetchBook(isbn));
+    }
+  };
 };
 
 //connect

@@ -18,8 +18,30 @@ export function fetchBookList() {
     return fetch(`http://localhost:4730/books`)
       .then(response => response.json())
       .then(json => {
-        
         dispatch(fetchBookListSuccess(json));
+      })
+      .catch(e => console.log(e));
+  };
+}
+
+export const fetchBookPending = () => {
+  return { type: "FETCH_BOOK_PENDING" };
+};
+
+export const fetchBookSuccess = json => {
+  return { type: "FETCH_BOOK_SUCCESS", book: json };
+};
+
+export function fetchBook(isbn) {
+  console.log("fetchbook isbn", isbn);
+  return dispatch => {
+    dispatch(fetchBookPending(isbn));
+
+    return fetch(`http://localhost:4730/books/${isbn}`)
+      .then(response => response.json())
+      .then(json => {
+        console.log("json", json);
+        dispatch(fetchBookSuccess(json));
       })
       .catch(e => console.log(e));
   };
