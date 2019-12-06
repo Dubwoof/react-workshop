@@ -1,17 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 
-export const BookDetails = ({ books, match }) => {
+export const BookDetails = ({ book, match }) => {
   return (
     <>
-      <div>{match.params.id}</div>
+      {book ? <div></div> : <div>books is undefined</div>}
+      <div>{match.params.isbn}</div>
     </>
   );
 };
 
 // define state & dispatch method for connect
 const mapStateToProps = state => ({
-  books: state.books,
+  book: state.book,
   pending: state.pending
 });
 
