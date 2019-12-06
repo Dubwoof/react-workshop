@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`A BookListItem component renders a book item correctly 1`] = `
+Array [
+  <a
+    href="/book/undefined"
+    onClick={[Function]}
+  >
+    <div>
+      NaN
+       
+      My Title
+    </div>
+  </a>,
+  <a
+    className="noDecoration"
+    href="/book/undefined/edit"
+    onClick={[Function]}
+  >
+    ✎
+  </a>,
+]
+`;
