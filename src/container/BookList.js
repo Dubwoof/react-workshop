@@ -2,25 +2,16 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { BookItem } from "../components/BookItem";
 import { AddButton } from "../components/AddButton";
-import { addDummyBook } from "../redux/booksActions";
+import { addDummyBook, fetchBookList } from "../redux/booksActions";
 
-export const BookList = ({ books, addBook }) => {
-  /*   useEffect(() => {
-    fetch("http://localhost:4730/books", {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      method: "GET"
-    })
-      .then(response => response.json())
-      .then(json => setBooks(json));
-  }, []); */
+export const BookList = ({ books, addBook, fetchBooks }) => {
+  useEffect(() => {
+    fetchBooks();
+  }, [fetchBooks]);
 
   return (
     <>
       <AddButton func={addBook} />
-      <button onClick={addBook}>add Book</button>
       {books.map((item, index) => {
         return <BookItem key={index} item={item} />;
       })}
@@ -35,6 +26,9 @@ const mapDispatchToProps = dispatch => {
   return {
     addBook: () => {
       return dispatch(addDummyBook());
+    },
+    fetchBooks: () => {
+      return dispatch(fetchBookList());
     }
   };
 };
