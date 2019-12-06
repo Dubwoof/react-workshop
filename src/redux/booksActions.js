@@ -47,6 +47,19 @@ export function fetchBook(isbn) {
   };
 }
 
-export function writeBook(isbn) {
-  console.log("writebook isbn", isbn);
+export function persistBook(book) {
+    console.log("persistbook isbn", book);
+    return dispatch => {
+  
+        const request = new Request(`http://localhost:4730/books/${book.isbn}`, {
+        headers: {
+                'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        method : 'PUT',
+        body   : JSON.stringify(book)
+    });
+
+      return fetch(request);
+    }
 }

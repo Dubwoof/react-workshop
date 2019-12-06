@@ -39,12 +39,6 @@ export const booksReducer = (state = INITIAL_STATE, action, event) => {
         book: action.book,
         pending: false
       };
-    case "UPDATE_BOOK":
-      console.log("state", state);
-      return {
-        ...state,
-        [event.target.name]: event.target.value
-      };
     default:
       return state;
   }

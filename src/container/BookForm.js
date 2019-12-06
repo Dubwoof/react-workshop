@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchBook } from "../redux/booksActions";
+import { fetchBook, persistBook } from "../redux/booksActions";
 
-export const BookForm = ({ fetchBookByIsbn, match, book }) => {
+export const BookForm = ({ fetchBookByIsbn, match, book, writeBook }) => {
   useEffect(() => {
     fetchBookByIsbn(match.params.isbn);
   }, [fetchBookByIsbn, match.params.isbn]);
@@ -10,13 +10,17 @@ export const BookForm = ({ fetchBookByIsbn, match, book }) => {
   const [tempBook, setTempBook] = useState(book);
 
   const onChange = event => {
-    setTempBook(event.target.value);
+    setTempBook({
+      ...book,
+      [event.target.name]: event.target.value
+    });
   };
 
   const handleSubmit = event => {
     console.log("hit save button", tempBook);
-    
     event.preventDefault();
+    console.log("temp book", tempBook);
+    writeBook(tempBook);
   };
 
   return (
@@ -30,6 +34,15 @@ export const BookForm = ({ fetchBookByIsbn, match, book }) => {
             value={tempBook.title}
             onChange={onChange}
           />
+          <br />
+          Subtitle:
+          <input
+            name="subtitle"
+            type="text"
+            value={tempBook.subtitle}
+            onChange={onChange}
+          />
+          <br />
           <span role="img" aria-label="submitLabel" onClick={handleSubmit}>
             💾
           </span>
@@ -52,9 +65,9 @@ const mapDispatchToProps = dispatch => {
       console.log("isbn", isbn);
       return dispatch(fetchBook(isbn));
     },
-    writeBook: isbn => {
-      console.log("isbn", isbn);
-      return dispatch(fetchBook(isbn));
+    writeBook: tempBook => {
+      console.log(tempBook);
+      dispatch(persistBook(tempBook));
     }
   };
 };
