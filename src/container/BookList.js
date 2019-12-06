@@ -4,7 +4,11 @@ import { BookItem } from "../components/BookItem";
 import { AddButton } from "../components/AddButton";
 import { addDummyBook, fetchBookList } from "../redux/booksActions";
 
-export const BookList = ({ books, addBook, fetchBooks }) => {
+import { BulletList } from "react-content-loader";
+
+const MyBulletListLoader = () => <BulletList />;
+
+export const BookList = ({ books, addBook, fetchBooks, pending }) => {
   useEffect(() => {
     fetchBooks();
   }, [fetchBooks]);
@@ -12,6 +16,7 @@ export const BookList = ({ books, addBook, fetchBooks }) => {
   return (
     <>
       <AddButton func={addBook} />
+      {pending && <MyBulletListLoader />}
       {books.map((item, index) => {
         return <BookItem key={index} item={item} />;
       })}
@@ -20,7 +25,10 @@ export const BookList = ({ books, addBook, fetchBooks }) => {
 };
 
 // define state & dispatch method for connect
-const mapStateToProps = state => ({ books: state.books });
+const mapStateToProps = state => ({
+  books: state.books,
+  pending: state.pending
+});
 
 const mapDispatchToProps = dispatch => {
   return {
