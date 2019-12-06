@@ -2,10 +2,11 @@
 const INITIAL_STATE = {
   books: [{ title: "A" }, { title: "B" }, { title: "C" }],
   book: {},
-  pending: false
+  pending: false,
+  event: null
 };
 
-export const booksReducer = (state = INITIAL_STATE, action) => {
+export const booksReducer = (state = INITIAL_STATE, action, event) => {
   console.log("action", action.type);
   switch (action.type) {
     case "ADD_DUMMY":
@@ -37,6 +38,12 @@ export const booksReducer = (state = INITIAL_STATE, action) => {
         ...state,
         book: action.book,
         pending: false
+      };
+    case "UPDATE_BOOK":
+      console.log("state", state);
+      return {
+        ...state,
+        [event.target.name]: event.target.value
       };
     default:
       return state;

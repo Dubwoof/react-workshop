@@ -2,15 +2,36 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchBook } from "../redux/booksActions";
 
-export const BookDetails = ({ book, match, fetchBookByIsbn }) => {
+import { Instagram } from "react-content-loader";
+
+const MyBulletListLoader = () => <Instagram />;
+
+export const BookDetails = ({ book, match, fetchBookByIsbn, pending }) => {
   useEffect(() => {
     fetchBookByIsbn(match.params.isbn);
   }, [fetchBookByIsbn, match.params.isbn]);
 
   return (
     <>
-      {book ? <div>{book.title}</div> : <div>book is undefined</div>}
-      <div>{match.params.isbn}</div>
+      {pending && <MyBulletListLoader className="loader" />}
+      {book ? (
+        <div>
+          {book.title}
+          <br />
+          {book.subtitle}
+          <br />
+          <br />
+          {book.abstract}
+          <br />
+          <br />
+          {book.isbn}
+        </div>
+      ) : (
+        <>
+          <div>book is undefined</div>
+          <div>url param: {match.params.isbn}</div>
+        </>
+      )}
     </>
   );
 };

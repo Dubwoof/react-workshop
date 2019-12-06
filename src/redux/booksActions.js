@@ -46,3 +46,7 @@ export function fetchBook(isbn) {
       .catch(e => console.log(e));
   };
 }
+
+export function writeBook(isbn) {
+  console.log("writebook isbn", isbn);
+}
